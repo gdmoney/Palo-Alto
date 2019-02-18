@@ -1,24 +1,15 @@
 Reboot Procedure
 ----------------
 1. Verify HA status and config sync	Dashboard > High Availability
-
 2. Backup config			Device > Setup > Operations > Save named config snapshot
 						    		    > Export named config snapshot
 								    > Export device state (optional)
 								    
-
 3. Take secondary unit out of HA	Device > HA > Operational Commands > Suspend local device
-
 4. Reboot secondary unit		Device > Setup > Operations > Device Operations > Reboot Device
-
 5. Verify HA status and config sync	Dashboard > High Availability *
-
 6. Take primary unit out of HA:		Device > HA > Operational Commands > Suspend local device
-
 7. Reboot primary unit			Device > Setup > Operations > Device Operations > Reboot Device
-
 8. Verify HA status and config sync	Dashboard > High Availability
-
-
 
 * if config sync is unable to complete, manually force sync from the secondary unit
