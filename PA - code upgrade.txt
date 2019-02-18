@@ -1,30 +1,20 @@
-
 1.  Verify HA status and config sync							Dashboard > High Availability
-
 2.  Backup device state & config on both units						Device > Setup > Operations > Export device state
-										    		    		    > Save named config snapshot
-										    		         	    > Export named config snapshot
+													> Save named config snapshot
+													> Export named config snapshot
 
 3.  Download new PAN-OS on the active-primary and sync to peer				Device > Software > Check Now > Download
-
 4.  Suspend the active-secondary							Device > HA > Operational Commands > Suspend local device
 
 5.  Verify that the active-primary is now passing all traffic				Monitor > Logs > Traffic
-
-6.  Install new PAN-OS on the active-secondary and reboot				Device > Software > Install 
-
+6.  Install new PAN-OS on the active-secondary and reboot				Device > Software > Install
 7.  Verify the active-secondary is passing traffic in a functional state 
-
 8.  Suspend the active-primary								Device > HA > Operational Commands > Suspend local device
 
 9.  Verify that the active-secondary is now passing all traffic 			Monitor > Logs > Traffic
-
 10. Install new PAN-OS on the active-primary and reboot					Device > Software > Install
-
 11. Verify the active-primary is passing traffic in a functional state 
-
 12. Verify that both firewalls are passing traffic correctly as an active/active pair
-
 
 
 debug swm status
