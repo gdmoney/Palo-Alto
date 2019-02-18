@@ -1,0 +1,71 @@
+Initial Config
+--------------
+192.168.1.1	admin/admin
+set deviceconfig system hostname HOSTNAME
+set deviceconfig system ip-address x.x.x.x
+set deviceconfig system netmask 255.255.255.0
+set deviceconfig system default-gateway x.x.x.x
+set deviceconfig system dns-primary x.x.x.x
+set deviceconfig system domain EXAMPLE.COM
+set deviceconfig system timezone US/Pacific
+set deviceconfig system service disable-telnet yes
+set deviceconfig system service disable-http yes
+
+
+General
+-------
+show system info files | resources | disk-space | logdb-quota
+show counter global | interface
+show arp
+show log system
+show running tcp state
+show interface all								// show interface to zone to IP address mapping
+test routing fib-lookup virtual-router default ip 172.31.40.250			// shows which interface is used to reach an IP
+
+
+Config
+------
+show config diff								// shows what changes haven't been committed
+set cli pager on | off
+set cli config-output-format default | set | xml
+
+
+View/clear Sessions
+-------------------
+show session info
+show session all filter source       10.70.50.100   destination 153.104.63.227
+show session all filter destination  153.104.63.227
+show session id nnnnn
+
+clear session id nnnnn
+clear session all filter source      10.70.50.100
+clear session all filter destination 153.104.63.227
+
+
+HA
+--
+request high-availability state suspend						// failover to peer and suspend current device
+request high-availability state functional					// re-enable HA on suspended system
+request high-availability sync-to-remote running-config				// force configuration and session synchronisation to peer device
+request shutdown system								// power down the device
+
+show high-availability all							// shows the high-availability information on current device
+show high-availability state							// shows the high-availability state information
+
+
+TCP
+---
+set deviceconfig setting session tcp-reject-non-syn yes | no			// reject | allow Non-SYN TCP packets
+set deviceconfig setting tcp asymmetric-path bypass | drop			// disable | enforce symmetric path enforcement
+
+
+Test if traffic is allowed
+--------------------------
+test security-policy-match from T_BE  to NT_OUTS source 10.141.210.16 destination 172.19.133.27 destination-port 1433 protocol 6
+test security-policy-match from T_BE  source 10.141.210.16 to NT_OUTS destination 172.19.133.27 destination-port 1433 protocol 6
+
+
+Troubleshooting
+---------------
+debug software restart process routed						// restart route daemon; do this first if floating IPs disappear
+debug dataplane reset appid cache						// restart the app-id cache

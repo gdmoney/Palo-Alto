@@ -1,0 +1,50 @@
+Defaults
+--------
+192.168.1.1
+admin/admin
+
+
+
+
+Implementation
+--------------
+1.  Backup old Fw config				Device > Setup > Operations > Export device state
+										    > Save named config snapshot
+										    > Export named config snapshot
+2.  Connect new FW to the Internet: configure temporary IP address and DNS
+3.  Register @ support.paloaltonetworks.com		Assets > Register New Device
+4.  Install content DBs to match peer's versions 	Device > Dynamic Updates > Check Now > Install
+5.  Update PANOS: 					Device > Software Updates > Upload > Install
+6.  Configure with new permanent IP address							
+7.  Install and connect new FW to the network and HA peer
+8.  Transfer licenses from old FW to new @ support.paloaltonetworks.com: Assets: search for the new device
+							Device > Licenses > Retrieve license keys from license server   
+9.  Replace the old FW with the new one in Panorama	> replace device old <old SN> new <new SN>
+10. Restore configuration on the new FW			Device > Setup > Operations > Import device state > Commit
+11. Verify HA status and config sync			Dashboard > High Availability
+
+
+
+
+Failover Testing
+----------------
+>request high-availability state suspend		//fail to peer and suspend current device
+
+>request high-availability state functional		//re-enable HA on suspended system
+
+>request high-availability sync-to-remote		//force configuration and session synchronisation to peer device
+
+>request shutdown system				//power down the device
+
+
+
+
+Show Commands
+-------------
+>show high-availability all				//shows the high-availability information on current device
+
+>show high-availability control-link			//shows the control link statistics
+
+>show high-availability state				//shows the high-availability state information
+
+>show high-availability state-synchronisation		//shows the synchronisation state to the peer device

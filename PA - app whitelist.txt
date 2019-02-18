@@ -1,0 +1,12 @@
+0. Get approval from mgmt and/or the security team (Vince Harrelson, Brad Rambur) to allow app
+
+If rule is site specific only:
+1. Objects  > Applications > Add: specify Properties and Port				//only if it's a custom app
+2. Policies > Application Override > Add						//only if it's a custom app
+3. Policies > Security > Add: create a new local security rule
+
+If rule is required Corp wide:
+1. Panorama > Objects  > Applications > Add: specify Properties and Port		//only if it's a custom app
+2. Panorama > Policies > Application Override > Pre Rules > Add				//only if it's a custom app
+3. Panorama > Objects  > Applications Groups > Group_App_Critical: add new app
+4. Push change to the PAs
