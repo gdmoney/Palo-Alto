@@ -5,7 +5,6 @@ admin/admin
 
 
 
-
 Implementation
 --------------
 1.  Backup old Fw config				Device > Setup > Operations > Export device state
@@ -25,26 +24,18 @@ Implementation
 
 
 
-
 Failover Testing
 ----------------
 >request high-availability state suspend		//fail to peer and suspend current device
-
 >request high-availability state functional		//re-enable HA on suspended system
-
 >request high-availability sync-to-remote		//force configuration and session synchronisation to peer device
-
 >request shutdown system				//power down the device
-
 
 
 
 Show Commands
 -------------
 >show high-availability all				//shows the high-availability information on current device
-
 >show high-availability control-link			//shows the control link statistics
-
 >show high-availability state				//shows the high-availability state information
-
 >show high-availability state-synchronisation		//shows the synchronisation state to the peer device
