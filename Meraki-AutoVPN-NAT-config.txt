@@ -1,0 +1,16 @@
+SDG_MerakiFW01   = 172.18.40.34
+SDG_MerakiFW-nat = 207.207.163.37
+
+Policy_NAT_Meraki_VPN {
+                  source-translation {
+                    static-ip {
+                      translated-address SDG_MerakiFW_nat;
+                      bi-directional yes;
+                    }
+                  }
+                  to NT_FE;
+                  from T_BE;
+                  source SDG_MerakiFW_01;
+                  destination any;
+                  service any;
+                  active-active-device-binding both;
